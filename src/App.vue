@@ -1,8 +1,9 @@
 <template>
+<body class="d-flex flex-column min-vh-100">
   <header class="navbar navbar-expand-lg bd-navbar sticky-top">
     <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
         <div class="bd-navbar-toggle">
-          <h1>NEWSMAKERS</h1>
+          <h3>NEWSMAKERS</h3>
         </div>
     </nav>
   </header>
@@ -90,6 +91,21 @@
       </div>
     </div>
   </div>
+  <footer class="d-flex flex-wrap justify-content-between align-items-center mt-auto">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="text-muted">2022</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex fixed-bottom">
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    </ul>
+  </footer>
+</body>
 </template>
 
 <script>
@@ -117,8 +133,9 @@ export default {
       let month = this.CurrentDate.split('-')[1]-0
       let day = this.CurrentDate.split('-')[2]-0
 
-      console.log(year, month, day)
-      return require(`../../../media/images/${year}/${month}/${day}/${this.selectedCountry}/${entity}.webp`)
+      console.log(year, month, day, entity)
+      return require(`../../media/images/${year}/${month}/${day}/${this.selectedCountry}/${entity}.webp`)
+      // return `images/${year}/${month}/${day}/${this.selectedCountry}/${entity}.webp`
     },
     getEntities () {
       console.log(this.selectedCountry, this.CurrentDate)
@@ -134,6 +151,15 @@ export default {
           .catch((e) => {
             console.error(e)
           })
+      // axios.post('http://0.0.0.0:8000', {
+      //   country: this.selectedCountry,
+      //   date: this.CurrentDate,
+      //   entity: 'LOC',
+      // }).then((res) => {
+      //   return res
+      // }).catch((e) => {
+      //   console.error(e)
+      // })
     },
     getNews(name, ent) {
       console.log(name, ent)
@@ -168,7 +194,13 @@ export default {
 }
 
 nav {
-  padding: 30px;
+  padding: 10px 10px 4px;
+  color: bisque;
+  background-color: #303b44;
+  font-family: Fantasy,system-ui;
+}
+.navbar {
+  padding-top: 0;
 }
 
 nav a {
@@ -200,4 +232,13 @@ nav a.router-link-exact-active {
 .wordcloud {
   width: 30%;
 }
+footer {
+  position: relative;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+  background-color: #303b44;
+  color: bisque;
+}
 </style>
+

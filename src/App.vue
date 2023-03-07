@@ -133,9 +133,16 @@ export default {
       let month = this.CurrentDate.split('-')[1]-0
       let day = this.CurrentDate.split('-')[2]-0
 
-      console.log(year, month, day, entity)
-      return require(`../../media/images/${year}/${month}/${day}/${this.selectedCountry}/${entity}.webp`)
-      // return `images/${year}/${month}/${day}/${this.selectedCountry}/${entity}.webp`
+      // console.log(year, month, day, entity)
+
+      let base_path = `images/${year}/${month}/${day}/${this.selectedCountry}/${entity}.webp`
+
+      if (process.env.NODE_ENV === 'production') {
+        return base_path
+      }
+      else {
+        return require(`../../media/`+base_path)
+      }
     },
     getEntities () {
       console.log(this.selectedCountry, this.CurrentDate)
@@ -151,15 +158,6 @@ export default {
           .catch((e) => {
             console.error(e)
           })
-      // axios.post('http://0.0.0.0:8000', {
-      //   country: this.selectedCountry,
-      //   date: this.CurrentDate,
-      //   entity: 'LOC',
-      // }).then((res) => {
-      //   return res
-      // }).catch((e) => {
-      //   console.error(e)
-      // })
     },
     getNews(name, ent) {
       console.log(name, ent)

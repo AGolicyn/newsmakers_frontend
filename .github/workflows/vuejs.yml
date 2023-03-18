@@ -1,8 +1,6 @@
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   pull:
@@ -27,3 +25,19 @@ jobs:
           file: ./Dockerfile_prod
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/newsmakers-frontend:latest
+  deploy:
+    needs: pull
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          cd /app/newsmakers/
+          docker compose down
+          docker compose pull frontend
+          docker compose up -d

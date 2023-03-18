@@ -145,8 +145,16 @@ export default {
       }
     },
     getEntities () {
+      let url
+      if (process.env.NODE_ENV === 'production') {
+        url = 'http://81.163.27.198:8000/country'
+      }
+      else {
+        url = 'http://0.0.0.0:8000/country'
+      }
+      console.log(url)
       console.log(this.selectedCountry, this.CurrentDate)
-      axios.post('http://0.0.0.0:8000/country', {
+      axios.post(url, {
         country: this.selectedCountry,
         date: this.CurrentDate
       })
@@ -162,7 +170,14 @@ export default {
     getNews(name, ent) {
       console.log(name, ent)
       console.log(Array.from(this.entities[ent][name]))
-      axios.post('http://0.0.0.0:8000/titles', {
+      let url
+      if (process.env.NODE_ENV === 'production') {
+        url = 'http://81.163.27.198:8000/titles'
+      }
+      else {
+        url = 'http://0.0.0.0:8000/titles'
+      }
+      axios.post(url, {
         entities: Array.from(this.entities[ent][name]),
       })
         .then((res) => {
@@ -195,7 +210,6 @@ nav {
   padding: 10px 10px 4px;
   color: bisque;
   background-color: #303b44;
-  font-family: Fantasy,system-ui;
 }
 .navbar {
   padding-top: 0;

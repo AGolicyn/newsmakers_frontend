@@ -147,7 +147,7 @@ export default {
     getEntities () {
       let url
       if (process.env.NODE_ENV === 'production') {
-        url = 'http://81.163.27.198:8000/country'
+        url = 'http://5.53.124.56:8000/country'
       }
       else {
         url = 'http://0.0.0.0:8000/country'
@@ -172,7 +172,7 @@ export default {
       console.log(Array.from(this.entities[ent][name]))
       let url
       if (process.env.NODE_ENV === 'production') {
-        url = 'http://81.163.27.198:8000/titles'
+        url = 'http://5.53.124.56:8000/titles'
       }
       else {
         url = 'http://0.0.0.0:8000/titles'

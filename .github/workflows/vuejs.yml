@@ -40,4 +40,4 @@ jobs:
           cd /app/newsmakers/
           docker compose down
           docker compose pull frontend
-          docker compose up -d
+          docker compose --env-file .env.upd up -d

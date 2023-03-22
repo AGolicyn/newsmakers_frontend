@@ -66,7 +66,9 @@
             <label for="main-titles">News/Titles</label>
             <div id="main-titles" class="list-group" v-for="title in titles.data" :key="title">
               <a :href="title.href" class="list-group d-flex list-group-item-action">
-                <small>{{ title.title }}</small>
+                <div class="d-flex justify-content-between">
+                  <small class="title-item">{{ title.title }}</small>
+                </div>
               </a>
             </div>
           </div>
@@ -96,7 +98,7 @@
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="text-muted">2022</span>
+      <span class="text-muted">2023</span>
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex fixed-bottom">
@@ -233,6 +235,17 @@ nav a.router-link-exact-active {
 .mb-1 {
   margin-bottom: 0;
   font-size: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title-item {
+  margin-left: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .main {
 
@@ -251,6 +264,9 @@ footer {
   width: 100%;
   background-color: #303b44;
   color: bisque;
+}
+.title-item {
+  overflow: hidden;
 }
 </style>
 

@@ -166,7 +166,7 @@
   </div>
   </div>
   <footer class="d-flex flex-wrap justify-content-between align-items-center mt-auto">
-    <a href="https://github.com/CodNaoborot" target="_blank" class="contacts mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">GitHub</a>
+    <a href="https://github.com/AGolicyn" target="_blank" class="contacts mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">GitHub</a>
   </footer>
 </body>
 </template>
